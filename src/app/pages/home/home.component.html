@@ -1,0 +1,57 @@
+<div class="container">
+
+  <h1> TEST TIENDA</h1>
+  <hr>
+
+  <div class="row">
+
+    <div class="col-md-8">
+        <div class="card-columns">
+
+            <div class="card text-center" *ngFor="let producto of productos">
+              <div class="card-body">
+                <h5 class="card-title">{{ producto.nombre}}</h5>
+                <p class="card-text">{{ producto.descripcion }}</p>
+                <p class="card-text"><small class="text-muted">${{ producto.precio}} </small></p>
+                <button class="btn btn-primary" (click)="agregarProducto(producto)">Añadir al Carrito</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+
+        <h3>Carrito</h3>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Total</th>
+
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of carrito">
+
+            <td>{{item.Producto.id}}</td>
+            <td>{{item.Producto.nombre}}</td>
+            <td>
+              <input type="text" size="4" [(ngModel)]="item.Cantidad" />
+            </td>
+            <td>$ {{ item.Producto.precio }}</td>
+            <td>$ {{ item.Cantidad * item.Producto.precio}}</td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <button class="btn btn-expand-full btn-success" (click)="comprar()">Comprar</button>
+
+    </div>
+  </div>
+
+</div>

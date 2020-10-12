@@ -1,0 +1,79 @@
+
+<div class="container">
+
+
+    <h1>Producto-Crear-Editar  </h1>
+    <hr>
+
+
+    <div class="row text-right">
+      <div class="col">
+        <button class="btn btn-danger"
+                routerLink="/producto">
+          <i class="fa fa-arrow-left"></i>
+          Regresar
+        </button>
+      </div>
+    </div>
+
+    <div class="row animated fadeIn faster">
+      <div class="col">
+
+        <form (ngSubmit)="crearOActualizarProducto( f )"
+              #f="ngForm">
+          <input type="hidden" name="accion" [(ngModel)]="ProductoSeleccionado.accion" />
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Nombre del producto"
+                   [(ngModel)]="ProductoSeleccionado.nombre"
+                   name="nombre"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label>Descripcion</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="descripcion"
+                   [(ngModel)]="ProductoSeleccionado.descripcion"
+                   name="descripcion"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label>Precio</label>
+            <input type="number"
+                   class="form-control"
+                   [(ngModel)]="ProductoSeleccionado.precio"
+                   name="precio"
+                   placeholder="$">
+          </div>
+
+          <div class="form-group">
+            <label>Referencia</label>
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)]="ProductoSeleccionado.referencia"
+                   name="referencia"
+                   placeholder="referencia">
+          </div>
+
+          <hr>
+          <div class="form-group text-center">
+            <button type="submit"
+                    class="btn btn-primary w-25">
+              <i class="fa fa-save"></i>
+              Guardar
+            </button>
+          </div>
+
+
+        </form>
+
+
+      </div>
+    </div>
+</div>
+

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "test-tienda"
+    }
+  },
+  "defaultProject": "test-tienda",
+  "cli": {
+    "analytics": false
+  }
 }
