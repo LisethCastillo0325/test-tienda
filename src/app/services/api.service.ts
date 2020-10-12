@@ -12,7 +12,7 @@ import { delay } from "rxjs/operators";
 export class ApiService {
 
   //direccion local del backend
-  PHP_API_SERVER = "http://127.0.0.1/test-desarrollador/test-tienda";
+  PHP_API_SERVER = "http://127.0.0.1";
 
   constructor(private http: HttpClient) { }
 
