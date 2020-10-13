@@ -21,10 +21,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.apiService.leerProductos().subscribe((productos: Producto[])=>{
-      this.productos = productos;
-
-      console.log(this.productos);
+    this.apiService.leerProductos().subscribe((res: any)=>{
+      this.productos = res.data;
     })
   }
 

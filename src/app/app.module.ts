@@ -10,6 +10,7 @@ import { ProductoComponent } from './pages/producto/producto.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProductoCrearEditarComponent } from './pages/producto-crear-editar/producto-crear-editar.component';
+import { EnvServiceProvider } from './services/utils/env.service.provider';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { ProductoCrearEditarComponent } from './pages/producto-crear-editar/prod
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [EnvServiceProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

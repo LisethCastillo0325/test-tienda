@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 
 import { Producto} from '../models/producto';
-import { Observable } from  'rxjs';
-import { delay } from "rxjs/operators";
+import { Observable, of } from  'rxjs';
+import { delay, catchError } from "rxjs/operators";
+import { EnvService } from './utils/env.service';
 
 
 @Injectable({
@@ -11,38 +12,46 @@ import { delay } from "rxjs/operators";
 })
 export class ApiService {
 
-  //direccion local del backend
-  PHP_API_SERVER = "http://127.0.0.1";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private env: EnvService) { }
 
   //metodo para recuperar todos los productos
-  leerProductos(): Observable<Producto[]>{
-    return this.http.get<Producto[]>(`${this.PHP_API_SERVER}/api/index.php`)
+  leerProductos(): Observable<any>{
+    const url = `${this.env.apiGatewayBackOffice}producto/listar-productos`;
+    return this.http.get(url)
       .pipe(
         delay(1500)
       );
   }
 
   //metodo para recuperar todos los productos
-  leerUnProducto(id: number): Observable<Producto[]>{
-    return this.http.get<Producto[]>(`${this.PHP_API_SERVER}/api/index.php/?id=${id}`);
+  leerUnProducto(id: number): Observable<any>{
+    const url = `${this.env.apiGatewayBackOffice}producto/obtener-producto/${id}`;
+    return this.http.get(url);
   }
 
 
   //metodo para crear un producto
-  crearProducto(policy: Producto): Observable<Producto>{
-    return this.http.post<Producto>(`${this.PHP_API_SERVER}/api/index.php`, policy);
+  crearProducto(producto: Producto): Observable<any>{
+
+    const url =  `${this.env.apiGatewayBackOffice}producto/crear-producto/`;
+    return this.http.post(url, producto)
+    .pipe(
+      delay(500),
+      catchError(err => of( err.error))
+    );;
   }
 
   //metodo para actualizar un producto
-  actualizarProducto(policy: Producto){
-    console.log('datos actualizar', policy)
-    return this.http.post<Producto>(`${this.PHP_API_SERVER}/api/index.php`, policy);
+  actualizarProducto(producto: Producto){
+    console.log('datos actualizar', producto)
+    const url = `${this.env.apiGatewayBackOffice}producto/actualizar-producto`;
+    return this.http.put<Producto>(url, producto);
   }
 
   //metodo para eliminar un producto
-  eliminarProducto(policy: Producto){
-    return this.http.post<Producto>(`${this.PHP_API_SERVER}/api/index.php`, policy);
+  eliminarProducto(id: string){
+    const url = `${this.env.apiGatewayBackOffice}producto/eliminar-producto/${id}`;
+    return this.http.delete(url);
   }
 }

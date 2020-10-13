@@ -9,7 +9,6 @@ const routes: Routes = [
     path : 'home',
     component : HomeComponent
   },
-
   {
     path : 'producto',
     component : ProductoComponent
@@ -17,8 +16,6 @@ const routes: Routes = [
   { path: 'producto-crear-editar/:id',
     component: ProductoCrearEditarComponent
   },
-
-
   {
     path : '**',
     redirectTo : 'home'
