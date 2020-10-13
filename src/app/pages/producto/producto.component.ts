@@ -23,8 +23,8 @@ export class ProductoComponent implements OnInit {
 
     this.cargando = true;
 
-    this.apiService.leerProductos().subscribe((productos: Producto[])=>{
-      this.productos = productos;
+    this.apiService.leerProductos().subscribe((res: any)=>{
+      this.productos = res.data;
       this.cargando = false;
 
       console.log(this.productos);
@@ -45,9 +45,8 @@ export class ProductoComponent implements OnInit {
       if ( resp.value ) {
 
         this.productos.splice(i, 1);
-        producto.accion = "eliminar";
-        this.apiService.eliminarProducto(producto).subscribe((producto: Producto)=>{
-          console.log("eliminado, ", producto);
+        this.apiService.eliminarProducto(producto.id).subscribe((res: any)=>{
+          console.log("eliminado, ", res.data);
         });
       }
 

@@ -36,8 +36,8 @@ export class ProductoCrearEditarComponent implements OnInit {
     if (id != 'nuevo') {
 
 
-      this.apiService.leerUnProducto(id).subscribe((productos: Producto[])=>{
-        this.ProductoSeleccionado = productos[0];
+      this.apiService.leerUnProducto(id).subscribe((res: any)=>{
+        this.ProductoSeleccionado = res.data[0];
         console.log("entre producto..",this.ProductoSeleccionado);
       })
 
@@ -53,8 +53,8 @@ export class ProductoCrearEditarComponent implements OnInit {
 
     if(this.ProductoSeleccionado && this.ProductoSeleccionado.id){
       form.value.id = this.ProductoSeleccionado.id;
-      form.value.accion = "actualizar";
-      this.apiService.actualizarProducto(form.value).subscribe((producto: Producto)=>{
+
+      this.apiService.actualizarProducto(form.value).subscribe((res: any)=>{
 
 
         Swal.fire({
@@ -65,8 +65,8 @@ export class ProductoCrearEditarComponent implements OnInit {
       });
     }
     else{
-      form.value.accion = "crear";
-      this.apiService.crearProducto(form.value).subscribe((producto: Producto)=>{
+
+      this.apiService.crearProducto(form.value).subscribe((res: any)=>{
 
         Swal.fire({
           title: '',
